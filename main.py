@@ -4,8 +4,15 @@ from winsound import Beep
 
 
 class Metronome:
+    """Create Metronome app with class instance."""
 
     def __init__(self, root, beats):
+        """Initiate default values for class and call interface().
+
+        Args:
+            root (tkinter.Tk): Main class instance for tkinter.
+            beats (list): Contains time signatures for metronome.
+        """
         self.root = root
         self.beats = beats
 
@@ -21,6 +28,7 @@ class Metronome:
         self.interface()
 
     def interface(self):
+        """Set interface for Metronome app."""
         frame = Frame()
         frame.pack()
 
@@ -50,23 +58,39 @@ class Metronome:
         button_stop.grid(row=2, column=1, padx=10, sticky="E")
 
     def start_counter(self, entry, spinbox):
+        """Start counter if self.start is False (prevents multiple starts).
+
+        Args:
+            entry (tkinter.Entry): tkinter Entry widget for app.
+            spinbox (tkinter.Spinbox): tkinter Spinbox widget for app.
+
+        Raises:
+            ValueError: if bpm field (self.bpm) on tkinter app is left blank.
+        """
         if not self.start:
             try:
                 self.bpm = int(entry.get())
             except ValueError:
                 self.bpm = 60
             else:
-                if self.bpm > 300:
+                if self.bpm > 300:  # Limits BPM
                     self.bpm = 300
 
-            self.time = int((60 / self.bpm - 0.1) * 1000)
+            self.time = int((60 / self.bpm - 0.1) * 1000)  # Math for delay
+
             self.start = True
             self.counter(spinbox)
 
     def stop_counter(self):
+        """Stop counter by setting self.start to False."""
         self.start = False
 
     def counter(self, spinbox):
+        """Control counter display and audio with calculated time delay.
+
+        Args:
+            spinbox (tkinter.Spinbox): tkinter Spinbox widget to get beat.
+        """
         if self.start:
             self.beat = int(spinbox.get()[0])
             self.count += 1
@@ -80,10 +104,12 @@ class Metronome:
             else:
                 Beep(440, 100)
 
+            # Calls this method after a certain amount of time (self.time).
             self.root.after(self.time, lambda: self.counter(spinbox))
 
 
 def main():
+    """Call Metronome class instance with tkinter root class settings."""
     root = Tk()
     root.title("Metronome")
 
