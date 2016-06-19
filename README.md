@@ -22,7 +22,7 @@ Simply put, the user enters the Beats-Per-Minute (BPM) in the upper left entry b
 
 ## Features
 
-I plan to add compound time signatures to the app in the future. 
+Simple time signatures (4/4, 3/4, 2/2); compound time signature (6/8).
 
 If there is vested interest in double time signatures, I will consider adding it as well.
 
