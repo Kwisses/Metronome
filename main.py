@@ -76,8 +76,6 @@ class Metronome:
                 if self.bpm > 300:  # Limits BPM
                     self.bpm = 300
 
-            self.time = int((60 / self.bpm - 0.1) * 1000)  # Math for delay
-
             self.start = True
             self.counter(spinbox)
 
@@ -93,6 +91,12 @@ class Metronome:
         """
         if self.start:
             self.beat = int(spinbox.get()[0])
+
+            if self.beat == 6:  # 6/8 time
+                self.time = int((60 / (self.bpm / .5) - 0.1) * 1000)
+            else:
+                self.time = int((60 / self.bpm - 0.1) * 1000)  # Math for delay
+
             self.count += 1
             self.var.set(self.count)
 
@@ -113,7 +117,7 @@ def main():
     root = Tk()
     root.title("Metronome")
 
-    beats = ["4/4", "2/4", "3/4"]
+    beats = ["4/4", "6/8", "2/4", "3/4"]
     Metronome(root, beats)
 
     root.mainloop()
