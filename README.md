@@ -6,6 +6,8 @@ Metronome is a desktop metronome for Windows written in Python with Tkinter.
 
 If you need a metronome on your desktop, this app is for you!
 
+Check the project's [Wiki](https://github.com/Kwistech/Metronome/wiki) for more info.
+
 ## Installation ##
 
 + Fork the repository and clone it to your local drive.
