@@ -1,6 +1,6 @@
 # Metronome
 
-Metronome v.1.0.0
+Metronome v.1.0.0 (Python 3.5)
 
 Metronome is a desktop metronome for Windows written in Python with Tkinter.
 
